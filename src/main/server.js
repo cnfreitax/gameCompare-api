@@ -1,9 +1,5 @@
-import http from "http";
 import { logger } from "../logger.js";
-import Routes from "./config/routes.js";
-
-const routes = new Routes();
-const app = http.createServer(routes.handler.bind(routes));
+import { app } from "./config/app.js";
 
 const upServer = () => {
   const { address, port } = app.address();
