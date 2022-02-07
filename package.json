@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand",
+    "test:w": "NODE_OPTIONS=--experimental-vm-modules npx jest --watch --runInBand",
+    "test:c": "NODE_OPTIONS=--experimental-vm-modules npx jest --no-cache --runInBand --coverage",
     "start": "node src/main/server.js"
   },
   "keywords": [],
@@ -16,7 +18,7 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
-    "pino": "^7.6.5",
-    "pino-prettier": "^1.0.1"
+    "pino": "6.8",
+    "pino-pretty": "^5.1"
   }
 }
