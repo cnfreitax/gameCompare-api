@@ -1,5 +1,3 @@
-import { logger } from '../../logger.js'
-
 export default class Routes {
 	constructor() {}
 
@@ -8,16 +6,15 @@ export default class Routes {
 	}
 
 	async options(request, response) {
-		response.writeHeader(204)
+		response.writeHead(204)
+		response.end()
 	}
 
 	async post(request, response) {
-		logger.info('oi')
 		response.end()
 	}
 
 	async get(request, response) {
-		logger.info('opa')
 		response.end()
 	}
 
