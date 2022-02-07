@@ -1,0 +1,22 @@
+{
+  "name": "@cnfreitax/gcompare-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/main/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.5.0",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "pino": "^7.6.5",
+    "pino-prettier": "^1.0.1"
+  }
+}
