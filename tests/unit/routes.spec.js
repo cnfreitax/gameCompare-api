@@ -1,8 +1,13 @@
 import Routes from '../../src/main/config/routes.js'
 import { jest, expect } from '@jest/globals'
+import { mockGameList } from '../mocks/gameList.js'
 
 describe('Routes', () => {
 	const sut = new Routes()
+
+	const mocks = {
+		gameList: mockGameList,
+	}
 
 	describe('handler', () => {
 		const defaultParams = {
@@ -39,8 +44,11 @@ describe('Routes', () => {
 
 			params.request.method = 'invalid-method'
 			await sut.handler(...params.values())
-			
-			expect(params.response.setHeader).toHaveBeenCalledWith('Access-Control-Allow-Origin', '*')
+
+			expect(params.response.setHeader).toHaveBeenCalledWith(
+				'Access-Control-Allow-Origin',
+				'*'
+			)
 		})
 
 		test('should method OPTIONS it should choose options route', async () => {
@@ -50,7 +58,7 @@ describe('Routes', () => {
 
 			params.request.method = 'OPTIONS'
 			await sut.handler(...params.values())
-			
+
 			expect(params.response.writeHead).toHaveBeenCalledWith(204)
 			expect(params.response.end).toHaveBeenCalled()
 		})
@@ -77,6 +85,12 @@ describe('Routes', () => {
 			await sut.handler(...params.values())
 
 			expect(spyMethod).toHaveBeenCalled()
+		})
+	})
+
+	describe('GET/list-games', () => {
+		test.skip('should list all games', () => {
+			const { gameList } = mocks
 		})
 	})
 })
