@@ -8,7 +8,7 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand",
     "test:w": "NODE_OPTIONS=--experimental-vm-modules npx jest --watch --runInBand",
     "test:c": "NODE_OPTIONS=--experimental-vm-modules npx jest --no-cache --runInBand --coverage",
-    "start": "node src/main/server.js"
+    "start": "nodemon src/main/server.js"
   },
   "keywords": [],
   "author": "",
