@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { serverError } from '../shared/http-helpers/errors.js'
 
-export default class GameService {
+export default class ListGameService {
 	async getGameList() {
 		try {
 			const resultList = await axios.get(

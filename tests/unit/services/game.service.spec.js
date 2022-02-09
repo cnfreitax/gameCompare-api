@@ -24,10 +24,14 @@ describe('GameService', () => {
 		test('should return an game list', async () => {
 			const { gameList: expectedResult, mockRequest } = mocks
 
+			const expectedData  = {
+				data: expectedResult
+			}
+
 			mockRequest.reply(200, expectedResult)
 
 			const response = await sut.getGameList()
-			expect(response).toEqual(expectedResult)
+			expect(response).toEqual(expectedData)
 		})
 
 		test('should throw serverError with statusCode 500 if throws', async () => {
