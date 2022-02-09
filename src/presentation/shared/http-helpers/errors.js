@@ -5,4 +5,9 @@ const serverError = (error) => ({
 	body: new ServerError(error.stack),
 })
 
-export { serverError }
+const badResquest = (error) => ({
+	statusCode: 400,
+	body: error,
+}) 
+
+export { serverError, badResquest }
