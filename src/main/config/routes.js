@@ -1,5 +1,9 @@
+import GameService from '../../presentation/services/game.service.js'
+
 export default class Routes {
-	constructor() {}
+	constructor() {
+		this.gameService = new GameService()
+	}
 
 	async notFound(request, response) {
 		response.end('Not found')
@@ -15,7 +19,10 @@ export default class Routes {
 	}
 
 	async get(request, response) {
-		response.end()
+		const result = await this.gameService.getGameList() 
+		
+		response.writeHead(result.statusCode || 200)
+		response.end(JSON.stringify(result))
 	}
 
 	handler(request, response) {

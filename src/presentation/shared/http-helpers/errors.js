@@ -1,4 +1,4 @@
-import { ServerError } from '../errors/server-error.js'
+import { ServerError } from '../errors/serverError.js'
 
 const serverError = (error) => ({
 	statusCode: 500,
