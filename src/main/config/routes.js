@@ -1,5 +1,6 @@
 import { GameResultService } from '../../presentation/services/gameResultService.js'
 import ListGameService from '../../presentation/services/listGameService.js'
+import { handlerBuffer } from './handlerBuffer.js'
 
 export default class Routes {
 	constructor() {
@@ -17,7 +18,9 @@ export default class Routes {
 	}
 
 	async post(request, response) {
-		// if (request.on('data', () => console.log('o')))
+		const { body } = await handlerBuffer(request)
+
+		console.log(body)
 		// const result = await this.gameResultService.generateResult(request.body)
 		response.writeHead(200)
 		response.end()
