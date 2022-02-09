@@ -1,30 +1,9 @@
 import { Positions } from '../../domain/models/competitionPosition.js'
 import { InvalidParamError } from '../shared/errors/invalidParams.js'
 import { badResquest, serverError } from '../shared/http-helpers/errors.js'
-import { fake } from './fake.js'
 
 export class GameResultService {
-	#compareByNote(games) {
-		return games.sort((a, b) => (a.nota > b.nota ? -1 : 1))[0]
-	}
-
-	#compareByReleaseYear(games) {
-		return games.sort((a, b) => (a.ano > b.ano ? -1 : 1))[0]
-	}
-
-	#compareByName(games) {
-		return games.sort((a, b) => (a.titulo > b.titulo ? 1 : -1))[0]
-	}
-
-	#availableToCompareByReleaseYear(games) {
-		return games[0].nota === games[1].nota && games[0].ano !== games[1].ano
-	}
-
-	#availableToCompareByNote(games) {
-		return games[0].nota !== games[1].nota
-	}
-
-	async generateResult(selectedGames = fake) {
+	async generateResult(selectedGames) {
 		try {
 			const fases = [[...selectedGames], [], []]
 
@@ -37,20 +16,10 @@ export class GameResultService {
 				const nextFase = fases[faseIndex + 1]
 
 				for (let i = 0; i < currentFase.length / 2; i++) {
-					const games = [
+					const roundResult = this.handlerResultRounds([
 						currentFase[i],
 						currentFase[currentFase.length - (1 + i)],
-					]
-
-					let roundResult
-
-					if (this.#availableToCompareByReleaseYear(games)) {
-						roundResult = this.#compareByReleaseYear(games)
-					} else if (this.#availableToCompareByNote(games)) {
-						roundResult = this.#compareByNote([games[0], games[1]])
-					} else {
-						roundResult = this.#compareByName([games[0], games[1]])
-					}
+					])
 
 					if (nextFase) {
 						nextFase.push(roundResult)
@@ -68,5 +37,32 @@ export class GameResultService {
 		} catch (error) {
 			return serverError(error)
 		}
+	}
+
+	#compareByAttribute(games, attribute) {
+		return games.sort((a, b) => (a[attribute] > b[attribute] ? -1 : 1))[0]
+	}
+
+
+	#availableToCompareByReleaseYear(games) {
+		return games[0].nota === games[1].nota && games[0].ano !== games[1].ano
+	}
+
+	#availableToCompareByNote(games) {
+		return games[0].nota !== games[1].nota
+	}
+
+	handlerResultRounds(games) {
+		let roundResult
+
+		if (this.#availableToCompareByReleaseYear(games)) {
+			roundResult = this.#compareByAttribute(games, 'ano')
+		} else if (this.#availableToCompareByNote(games)) {
+			roundResult = this.#compareByAttribute(games, 'nota')
+		} else {
+			roundResult = this.#compareByAttribute(games, 'titulo')
+		}
+
+		return roundResult
 	}
 }

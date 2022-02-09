@@ -20,10 +20,10 @@ export default class Routes {
 	async post(request, response) {
 		const { body } = await handlerBuffer(request)
 
-		console.log(body)
-		// const result = await this.gameResultService.generateResult(request.body)
-		response.writeHead(200)
-		response.end()
+		const result = await this.gameResultService.generateResult(body.data)
+
+		response.writeHead(result.statusCode || 200)
+		response.end(JSON.stringify(result))
 	}
 
 	async get(_request, response) {
