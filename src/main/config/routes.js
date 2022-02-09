@@ -1,8 +1,8 @@
-import GameService from '../../presentation/services/game.service.js'
+import ListGameService from '../../presentation/services/listGameService.js'
 
 export default class Routes {
 	constructor() {
-		this.gameService = new GameService()
+		this.listGameService = new ListGameService()
 	}
 
 	async notFound(request, response) {
@@ -18,8 +18,8 @@ export default class Routes {
 		response.end()
 	}
 
-	async get(request, response) {
-		const result = await this.gameService.getGameList() 
+	async get(_request, response) {
+		const result = await this.listGameService.getGameList() 
 		
 		response.writeHead(result.statusCode || 200)
 		response.end(JSON.stringify(result))

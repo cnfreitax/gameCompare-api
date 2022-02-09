@@ -1,11 +1,11 @@
 import { expect, afterEach } from '@jest/globals'
 import { mockGameList } from '../../mocks/gameList.js'
-import GameService from '../../../src/presentation/services/game.service.js'
+import ListGameService from '../../../src/presentation/services/listGameService.js'
 import axios from 'axios'
 import axiosAdapter from 'axios/lib/adapters/http'
 import nock from 'nock'
 
-const sut = new GameService()
+const sut = new ListGameService()
 
 axios.defaults.adapter = axiosAdapter
 const mocks = {
