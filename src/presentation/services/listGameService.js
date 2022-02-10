@@ -7,7 +7,7 @@ export default class ListGameService {
 			const resultList = await axios.get(
 				'https://l3-processoseletivo.azurewebsites.net/api/Competidores?copa=games'
 			)
-			return {data: resultList.data}
+			return {games: resultList.data}
 
 
 		} catch (error) {

@@ -5,8 +5,8 @@ import { badResquest, serverError } from '../shared/http-helpers/errors.js'
 export class GameResultService {
 	async generateResult(selectedGames) {
 		try {
-			const fases = [[...selectedGames], [], []]
-
+			const fases = [selectedGames, [], []]
+		
 			const validGame = selectedGames.length != 8
 			if (validGame)
 				return badResquest(new InvalidParamError('Maximum choices exceeded'))
