@@ -25,7 +25,7 @@ describe('GameService', () => {
 			const { gameList: expectedResult, mockRequest } = mocks
 
 			const expectedData  = {
-				data: expectedResult
+				games: expectedResult
 			}
 
 			mockRequest.reply(200, expectedResult)

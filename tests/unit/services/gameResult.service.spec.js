@@ -21,21 +21,10 @@ describe('GameResultService', () => {
 		)
 	})
 
-	test('shoudl have a 7 rounds to get gaming result', async () => {
-		const { validRequestData } = mocks
-
-		const expectedCalls = 5
-
-		const spyHandlerResultRounds = jest.spyOn(sut, 'handlerResultRounds')
-		await sut.generateResult(validRequestData)
-		expect(spyHandlerResultRounds).toHaveBeenCalledTimes(expectedCalls)
-	})
-
-	test('should return The Legend of Zelda: Ocarina of Time (N64) in the first position', async () => {
+	test('should return Grand Theft Auto IV (PS3) in the first position', async () => {
 		const { validRequestData } = mocks
 		const result = await sut.generateResult(validRequestData)
-		expect(result[0].titulo).toEqual(
-			'The Legend of Zelda: Ocarina of Time (N64)'
-		)
+
+		expect(result[0].titulo).toEqual('Grand Theft Auto IV (PS3)')
 	})
 })

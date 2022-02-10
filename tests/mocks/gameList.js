@@ -2,6 +2,13 @@
 export const mockGameList = [
 	{
 		'id': '/nintendo-64/the-legend-of-zelda-ocarina-of-time',
+		'titulo': 'Any Game',
+		'nota': 91.9,
+		'ano': 1998,
+		'urlImagem': 'https://l3-processoseletivo.azurewebsites.net/api/CapaJogo/nintendo-64/the-legend-of-zelda-ocarina-of-time'
+	},
+	{
+		'id': '/nintendo-64/the-legend-of-zelda-ocarina-of-time',
 		'titulo': 'The Legend of Zelda: Ocarina of Time (N64)',
 		'nota': 99.9,
 		'ano': 1998,
