@@ -20,6 +20,8 @@ export default class Routes {
 	async post(request, response) {
 		const { body } = await handlerBuffer(request)
 
+		console.log('opa')
+
 		const result = await this.gameResultService.generateResult(body.data)
 
 		response.writeHead(result.statusCode || 200)
@@ -28,7 +30,7 @@ export default class Routes {
 
 	async get(_request, response) {
 		const result = await this.listGameService.getGameList()
-
+		
 		response.writeHead(result.statusCode || 200)
 		response.end(JSON.stringify(result))
 	}
